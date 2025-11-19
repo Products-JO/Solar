@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solar Energy – أنظمة الطاقة الشمسية</title>
+
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content="SOLAR ENERGY – أنظمة الطاقة الشمسية" />
+  <meta property="og:description" content="بطاريات LiFePO4، إنفرترات هايبرد وبيور ساين، منظمات شحن، قواطع حماية، ووصلات ألواح شمسية في الأردن." />
+
+  <!-- صورة المعاينة -->
+  <meta property="og:image" content="https://i.postimg.cc/nc8xhfLn/file-000000005f1871f5ad25643ddf76020c.png" />
+  <meta name="twitter:image" content="https://i.postimg.cc/nc8xhfLn/file-000000005f1871f5ad25643ddf76020c.png">
+
+<meta property="og:url" content="https://products-jo.github.io/Solar/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SOLAR ENERGY – أنظمة الطاقة الشمسية">
+  <meta name="twitter:description" content="بطاريات LiFePO4، إنفرترات، منظمات شحن وقواطع حماية للطاقة الشمسية في الأردن.">
+
+  <style>
+    html, body { margin:0; padding:0; overflow-x:hidden; width:100vw; }
+    * { box-sizing:border-box; }
+    body {
+      font-family: Arial,sans-serif;
+      direction:rtl;
+      margin:0;
+      padding:0;
+      background:#f8f8f8;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header {
+      position: relative;
+      color:white;
+      text-align:center;
+      padding:20px;
+      min-height:250px;
+      overflow:visible;
+    }
+
+    /* الخلفية الجديدة مع Blur */
+    header::before {
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background:url('https://i.postimg.cc/bwsZfjVr/20251106134939300.png') no-repeat center center;
+      background-size:cover;
+      filter: blur(8px);
+      z-index:-1;
+      transform:scale(1.1);
+    }
+
+    header > * { position: relative; z-index:1; }
+    header img.logo-new {
+      width:100px;
+      margin:0 auto 10px;
+      display:block;
+      border-radius:8px;
+    }
+    header h1 {
+      margin:5px 0;
+      font-size:2rem;
+      font-weight:bold;
+      text-shadow:0 0 5px rgba(0,0,0,0.6);
+    }
+    header p, header small {
+      margin:2px 0;
+      font-weight:normal;
+      opacity:0.9;
+      text-shadow:0 0 4px rgba(0,0,0,0.5);
+    }
+
+    #productsDropdown {
+      position: relative;
+      margin: 15px auto 0;
+      width: 220px;
+      text-align: center;
+      z-index: 10;
+    }
+    #productsDropdown .dropbtn {
+      background:#0096d6;
+      color:white;
+      border:none;
+      border-radius:5px;
+      padding:12px;
+      width:100%;
+      font-weight:bold;
+      font-size:1.1rem;
+      cursor:pointer;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:6px;
+      user-select:none;
+    }
+    #productsDropdown .dropbtn svg {
+      width:16px; height:16px; fill:white; transition:transform 0.3s ease;
+    }
+    #productsDropdown.open .dropbtn svg { transform:rotate(180deg); }
+    #productsDropdown .dropdown-content {
+      display:none;
+      position:absolute;
+      top:100%;
+      right:0;
+      background:white;
+      border-radius:5px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.15);
+      width:100%;
+      z-index:100;
+      text-align:right;
+    }
+    #productsDropdown .dropdown-content a {
+      display:block;
+      padding:12px;
+      color:#0077b6;
+      text-decoration:none;
+      font-weight:normal;
+      cursor:pointer;
+      user-select:none;
+    }
+    #productsDropdown .dropdown-content a:hover { background:#e0f0ff; }
+    #productsDropdown.open .dropdown-content { display:block; }
+
+    main { flex-grow:1; max-width:700px; margin:20px auto; padding:0 20px; }
+    #productList { display:block; }
+
+    .product-summary {
+      background:white;
+      border-radius:10px;
+      padding:15px;
+      margin-bottom:15px;
+      box-shadow:0 0 8px rgba(0,0,0,0.1);
+      cursor:pointer;
+      text-align:center;
+      font-weight:bold;
+      color:#0077b6;
+      user-select:none;
+    }
+
+    .product {
+      display:none;
+      max-width:700px;
+      margin:20px auto;
+      padding:20px;
+      background:white;
+      border-radius:10px;
+      box-shadow:0 0 12px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    .product.active { display:block; }
+
+    .product img.main-image {
+      max-width:100%;
+      height:300px;
+      object-fit:contain;
+      margin-bottom:15px;
+      border-radius:8px;
+      background:#fff;
+    }
+
+    .back-btn {
+      background:#0077b6;
+      color:white;
+      border:none;
+      padding:10px 20px;
+      border-radius:6px;
+      cursor:pointer;
+      margin-top:10px;
+      font-weight:bold;
+      user-select:none;
+    }
+    .whatsapp-btn {
+      background:#25d366;
+      color:white;
+      padding:12px 20px;
+      text-decoration:none;
+      border-radius:6px;
+      font-weight:bold;
+      display:inline-block;
+      margin-top:10px;
+      user-select:none;
+    }
+
+    .thumbnail-container {
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .thumbnail {
+      width:60px;
+      height:60px;
+      object-fit:contain;
+      border:2px solid transparent;
+      border-radius:5px;
+      cursor:pointer;
+      background:#fff;
+      transition:border-color 0.3s ease;
+      user-select:none;
+    }
+    .thumbnail.selected { border-color:#0077b6; }
+    .thumbnail:hover { border-color:#0096d6; }
+
+    footer {
+      background:#0077b6;
+      color:white;
+      text-align:center;
+      padding:12px 20px;
+      font-size:0.9rem;
+      user-select:none;
+      margin-top:auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img class="logo-new" src="https://i.postimg.cc/0yQw5SQh/lanzmt-altaqt-alshmsyt-20251109-123438-0000.png" alt="Logo Solar" />
+  <h1>SOLAR ENERGY – أنظمة الطاقة الشمسية</h1>
+  <p>أهلاً وسهلاً بكم في متجر حلول وأنظمة الطاقة الشمسية</p>
+  <small>تواصلوا معنا عبر الرقم 0797610007</small><br />
+  <small>موقعنا عمان - الاردن </small>
+
+  <div class="dropdown" id="productsDropdown">
+    <button class="dropbtn" id="productsBtn">المنتجات
+      <svg viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+    </button>
+    <div class="dropdown-content" id="dropdownContent">
+      <a data-product="1">🔋 بطاريات LiFePO4</a>
+      <a data-product="2">⚡ Hybrid Inverter</a>
+      <a data-product="3">🔌 Pure Sine Inverter</a>
+      <a data-product="4">🔗 Mc4 & Mid + End قطع توصيل ألواح شمسية</a>
+      <a data-product="5">🌞 Solar Controller</a>
+      <a data-product="6">🛡️ Breaker قواطع حماية</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- قائمة المنتجات -->
+  <div id="productList">
+    <div class="product-summary" data-product="1">🔋 بطاريات LiFePO4 للطاقة الشمسية</div>
+    <div class="product-summary" data-product="2">⚡ إنفرتر هايبرد Hybrid Inverter</div>
+    <div class="product-summary" data-product="3">🔌 إنفرتر Pure Sine Wave</div>
+    <div class="product-summary" data-product="4">🔗 Mc4 & Mid + End وصلات الألواح الشمسية</div>
+    <div class="product-summary" data-product="5">🌞 منظم شحن Solar Controller</div>
+    <div class="product-summary" data-product="6">🛡️ قواطع حماية Breakers</div>
+  </div>
+
+  <!-- PRODUCT 1 — بطاريات LiFePO4 -->
+  <div class="product" id="product-1">
+    <img class="main-image" id="main-img-1" src="https://i.postimg.cc/nc8xhfLn/file-000000005f1871f5ad25643ddf76020c.png" />
+
+    <div class="thumbnail-container" data-product="1">
+      <img class="thumbnail selected" src="https://i.postimg.cc/nc8xhfLn/file-000000005f1871f5ad25643ddf76020c.png" />
+      <img class="thumbnail" src="https://i.postimg.cc/RhKjHq0V/file-00000000c89c722faced25af08529b21.png" />
+      <img class="thumbnail" src="https://i.postimg.cc/15ZxZ0WD/file-000000002dfc71f5aad3be207172f75f.png" />
+      <img class="thumbnail" src="https://i.postimg.cc/GmcZ4Ln1/file-000000000c1471f5888c6ed1c5624872.png" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>بطاريات LiFePO4 للطاقة الشمسية</h2>
+    <p>
+      بطاريات ليثيوم LiFePO4 عالية الكفاءة لأنظمة الطاقة الشمسية،
+      دورة حياة طويلة، أمان عالي، أداء ثابت مع الشحن والتفريغ المستمر.
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن بطاريات LiFePO4">تواصل واتساب</a>
+  </div>
+
+  <!-- PRODUCT 2 — Hybrid Inverter -->
+  <div class="product" id="product-2">
+    <img class="main-image" id="main-img-2" src="https://i.postimg.cc/k4tH0DKw/file-0000000016a4722f91e5fb494e3cd43a.png" />
+
+    <div class="thumbnail-container" data-product="2">
+      <img class="thumbnail selected" src="https://i.postimg.cc/k4tH0DKw/file-0000000016a4722f91e5fb494e3cd43a.png" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>إنفرتر هايبرد Hybrid Inverter</h2>
+    <p>
+      إنفرترات هايبرد تربط بين البطاريات والشبكة والألواح الشمسية لتوفير أفضل إنتاجية واستقرار للطاقة.
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن Hybrid Inverter">تواصل واتساب</a>
+  </div>
+
+  <!-- PRODUCT 3 — Pure Sine -->
+  <div class="product" id="product-3">
+    <img class="main-image" id="main-img-3" src="https://i.postimg.cc/JhS65mvQ/B4C57652-2C17-43E5-89CD-7C466147F23F.png" />
+
+    <div class="thumbnail-container" data-product="3">
+      <img class="thumbnail selected" src="https://i.postimg.cc/JhS65mvQ/B4C57652-2C17-43E5-89CD-7C466147F23F.png" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>إنفرتر Pure Sine Wave</h2>
+    <p>
+      إنفرترات بيور ساين موجة جيبية نقية لتشغيل الأجهزة الحساسة بكفاءة عالية.  
+      <br>
+      <b>متوفر بقدرات:</b>  
+      1500W – 2000W – 3000W – 4000W – 6000W
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن Pure Sine Inverter والقدرات المتوفرة">تواصل واتساب</a>
+  </div>
+
+  <!-- PRODUCT 4 — MC4 + MID + END -->
+  <div class="product" id="product-4">
+    <img class="main-image" id="main-img-4" src="https://i.postimg.cc/DZqgQGqn/IMG-4365.jpg" />
+
+    <div class="thumbnail-container" data-product="4">
+      <img class="thumbnail selected" src="https://i.postimg.cc/DZqgQGqn/IMG-4365.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/ZKfLL4y0/IMG-4366.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/Sx37wddk/IMG-20251102-WA0066.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/QC8ppy8H/IMG-4367.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/7P91xw9z/IMG-4368.jpg" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>MC4 + MID + END قطع توصيل الألواح الشمسية</h2>
+    <p>
+      جميع قطع التوصيل الخاصة بالألواح الشمسية مثل MC4 / MID / END  
+      جودة عالية وضمان توصيل آمن وسليم لمنظومة الطاقة الشمسية.
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن وصلات ألواح شمسية MC4 و MID و END">تواصل واتساب</a>
+  </div>
+
+  <!-- PRODUCT 5 — Solar Controller -->
+  <div class="product" id="product-5">
+    <img class="main-image" id="main-img-5" src="https://i.postimg.cc/kGgbVRsZ/IMG-20251104-WA0001.jpg" />
+
+    <div class="thumbnail-container" data-product="5">
+      <img class="thumbnail selected" src="https://i.postimg.cc/kGgbVRsZ/IMG-20251104-WA0001.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/sXySrNhR/IMG-20251104-WA0002.jpg" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>Solar Charge Controller</h2>
+    <p>
+      منظمات شحن شمسية MPPT / PWM  
+      حماية للبطاريات وتنظيم دخول التيار لتحسين عمر المنظومة وكفاءتها.
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن Solar Controller MPPT / PWM">تواصل واتساب</a>
+  </div>
+
+  <!-- PRODUCT 6 — Breakers -->
+  <div class="product" id="product-6">
+    <img class="main-image" id="main-img-6" src="https://i.postimg.cc/W15b3YCb/Screenshot-20251120-021827.jpg" />
+
+    <div class="thumbnail-container" data-product="6">
+      <img class="thumbnail selected" src="https://i.postimg.cc/W15b3YCb/Screenshot-20251120-021827.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/hjdS2DjB/Screenshot-20251120-021845.jpg" />
+      <img class="thumbnail" src="https://i.postimg.cc/D0Q7KxLQ/Screenshot-20251120-021900.jpg" />
+    </div>
+
+    <button class="back-btn">رجوع إلى قائمة المنتجات</button>
+
+    <h2>قواطع حماية Breakers</h2>
+    <p>
+      قواطع حماية خاصة بالطاقة الشمسية  
+      لحماية الإنفرتر والبطاريات والأسلاك من التيارات الزائدة والماس الكهربائي.
+    </p>
+
+    <a class="whatsapp-btn" href="https://wa.me/962797610007?text=مرحبا، أريد الاستفسار عن Breakers للطاقة الشمسية">تواصل واتساب</a>
+  </div>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © 2025 أنظمة الطاقة الشمسية
+</footer>
+
+<script>
+  const dropdown = document.getElementById('productsDropdown');
+  const productsBtn = document.getElementById('productsBtn');
+  const dropdownContent = document.getElementById('dropdownContent');
+
+  productsBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+
+  window.addEventListener('click', () => dropdown.classList.remove('open'));
+
+  dropdownContent.querySelectorAll('a').forEach(item => {
+    item.addEventListener('click', () => showProduct(item.dataset.product));
+  });
+
+  document.querySelectorAll('.product-summary').forEach(s => {
+    s.addEventListener('click', () => showProduct(s.dataset.product));
+  });
+
+  document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('click', showProductList);
+  });
+
+  function showProduct(productId) {
+    document.getElementById('productList').style.display = 'none';
+    document.querySelectorAll('.product').forEach(p => p.classList.remove('active'));
+    document.getElementById('product-' + productId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showProductList() {
+    document.getElementById('productList').style.display = 'block';
+    document.querySelectorAll('.product').forEach(p => p.classList.remove('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.thumbnail').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const container = thumb.parentElement;
+      const productId = container.dataset.product;
+      const mainImg = document.getElementById('main-img-' + productId);
+
+      container.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('selected'));
+
+      thumb.classList.add('selected');
+      mainImg.src = thumb.src;
+    });
+  });
+</script>
+
+</body>
+</html>
