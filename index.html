@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الغدير لأنظمة الطاقة الشمسية</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-padding-top: 140px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #e0f2fe;
+      color: #0f172a;
+      line-height: 1.7;
+      overflow-x: hidden; /* يمنع سكرول الصفحة يمين/يسار */
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #cbd5f5;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-row img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #025f8f;
+    }
+
+    .top-buttons {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-call, .btn-whatsapp {
+      padding: 0.55rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .btn-call { background: #0284c7; }
+    .btn-whatsapp { background: #22c55e; }
+
+    /* الأقسام – Scroll داخلي فقط */
+    .main-nav {
+      width: 100%;
+      margin-top: 0.8rem;
+      overflow-x: auto;          /* السكرول للأقسام فقط */
+      scrollbar-width: none;     /* إخفاء سكروول فايرفوكس */
+    }
+    .main-nav::-webkit-scrollbar {
+      display: none;             /* إخفاء سكروول كروم */
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: nowrap;         /* سطر واحد */
+      gap: 0.4rem;
+      padding-bottom: 0.2rem;
+      width: max-content;        /* ياخد مساحة المحتوى فقط */
+    }
+
+    .main-nav a {
+      flex: 0 0 auto;
+      text-align: center;
+      padding: 0.5rem 0.9rem;
+      background: #eff6ff;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1.2rem 1rem 2rem;
+    }
+
+    .section {
+      background: white;
+      border-radius: .75rem;
+      border: 1px solid #cbd5f5;
+      padding: 1rem;
+      margin-top: 1.3rem;
+    }
+
+    .image-grid {
+      margin-top: .7rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+      gap: .7rem;
+    }
+
+    .img-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5f5;
+      border-radius: .5rem;
+      padding: .6rem;
+      text-align: center;
+    }
+
+    .img-box img {
+      max-width: 100%;
+      border-radius: .4rem;
+      margin-bottom: .35rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .img-box img:hover {
+      transform: scale(1.05);
+    }
+
+    .img-box span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .details {
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+      color: #1e3a8a;
+      background: #dbeafe;
+      border-radius: 0.4rem;
+      padding: 0.5rem 0.6rem;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* Popup */
+    #popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    #popup-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      border-top: 1px solid #bfdbfe;
+      text-align: center;
+      padding: 1rem;
+      font-size: .8rem;
+      color:#64748b;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Popup -->
+<div id="popup">
+  <span id="popup-close">✖ إغلاق</span>
+  <img id="popup-img" src="">
+</div>
+
+<header>
+  <div class="nav-container">
+
+    <div class="top-row">
+      <div class="logo-row">
+        <img src="https://i.ibb.co/tw48YbHH/logo.png" alt="Logo">
+        <div class="logo-text">الغدير لأنظمة الطاقة الشمسية</div>
+      </div>
+
+      <div class="top-buttons">
+        <a href="tel:0797610007" class="btn-call">📞 اتصال: 0797610007</a>
+        <a href="https://wa.me/962797610007" class="btn-whatsapp">💬 واتساب</a>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#lifepo4">LiFePO4</a></li>
+        <li><a href="#super48">Super 48V</a></li>
+        <li><a href="#hybrid-inverters">الإنفرترات</a></li>
+        <li><a href="#connectors">التوصيلات</a></li>
+        <li><a href="#solar-controllers">منظم الشحن</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- Super 48V -->
+  <section id="super48" class="section">
+    <h2>بطاريات Super 48V</h2>
+
+    <div class="image-grid">
+      <div class="img-box">
+        <img src="https://i.ibb.co/j94JYSpX/file-000000005ae871fd80e4f2f0f646fc90.png">
+        <span>48V 300Ah — 15.3kW</span>
+        <div class="details">
+          بطارية Super قوية بسعة 300Ah وقدرة 15.3kW، مناسبة للأنظمة الكبيرة والأحمال العالية.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/cP8szBs/file-00000000520071f59b37d5fc3b090448.png">
+        <span>48V — 5.12kW</span>
+        <div class="details">
+          بطارية Super بقدرة 5.12kW، خيار ممتاز للمنازل والأنظمة المتوسطة.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LiFePO4 -->
+  <section id="lifepo4" class="section">
+    <h2>بطاريات LiFePO4</h2>
+
+    <div class="image-grid">
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/N6CsMFbL/file-000000000c1471f5888c6ed1c5624872.png">
+        <span>Lifepo4 100Ah 25.6V</span>
+        <div class="details">
+          بطارية 25.6V بسعة 100Ah، مناسبة للأنظمة المنزلية والأحمال المتوسطة، مع حماية BMS مستقرة.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/KtJrqHn/file-000000002dfc71f5aad3be207172f75f.png">
+        <span>Lifepo4 300Ah 3.8kW</span>
+        <div class="details">
+          بطارية 300Ah بقدرة 3.8kWh، مناسبة للأحمال الكبيرة وأنظمة الطاقة القوية.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/Pzs8dL9t/file-000000005f1871f5ad25643ddf76020c.png">
+        <span>Lifepo4 100Ah 1.28kW</span>
+        <div class="details">
+          بطارية 1.28kWh بوزن خفيف، مناسبة للاستخدام المنزلي الخفيف والباك أب اليومي.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/DgzmRw27/file-00000000c89c722faced25af08529b21.png">
+        <span>Lifepo4 200Ah 2.56kW</span>
+        <div class="details">
+          بطارية 200Ah بقدرة 2.56kWh، خيار ممتاز للبيوت والمزارع الصغيرة بتوازن عالي.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- الإنفرترات -->
+  <section id="hybrid-inverters" class="section">
+    <h2>الإنفرترات الهايبرد</h2>
+
+    <div class="image-grid">
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/Wr27kCW/file-0000000016a4722f91e5fb494e3cd43a.png">
+        <span>6.2KW HYBRID</span>
+        <div class="details">
+          إنفرتر 6.2kW يدعم ربط الألواح والبطارية والشبكة، أداء قوي للأحمال الكبيرة.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/d04NsjjM/file-000000003ee871fda30dda3a730a3da1.png">
+        <span>EVOBOSS Inverter 12V</span>
+        <div class="details">
+          إنفرتر 12V مناسب للأنظمة الصغيرة والمتنقلة، موجة ثابتة وحماية داخلية.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- التوصيلات -->
+  <section id="connectors" class="section">
+    <h2>قطع التوصيل</h2>
+
+    <div class="image-grid">
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/4nxYvKKx/IMG-4365.jpg">
+        <span>قطعة توصيل</span>
+        <div class="details">
+          موصلات شمسية عالية الجودة لضمان اتصال ثابت وآمن بين الألواح.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/3ybvZMjG/IMG-4366.jpg">
+        <span>قطعة توصيل</span>
+        <div class="details">
+          توصيلات متينة وسهلة التركيب، مناسبة للأنظمة المنزلية والمزارع.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/Xk773MpX/IMG-4367.jpg">
+        <span>Mid/End Clamp</span>
+        <div class="details">
+          كلابات تثبيت قوية للألواح، مقاومة للعوامل الجوية والرياح.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/zzGqJD7/IMG-4368.jpg">
+        <span>Mid/End Clamp</span>
+        <div class="details">
+          تثبيت نهائي للألواح لضمان ثبات كامل على الهياكل.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- منظم الشحن -->
+  <section id="solar-controllers" class="section">
+    <h2>منظم الشحن</h2>
+
+    <div class="image-grid">
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/0yhpQvvz/IMG-20251104-WA0001.jpg">
+        <span>منظم شحن 1</span>
+        <div class="details">
+          منظم شحن بشاشة عرض، يوفر حماية للبطاريات وتحكم ثابت بالشحن.
+        </div>
+      </div>
+
+      <div class="img-box">
+        <img src="https://i.ibb.co/k237nM2p/IMG-20251104-WA0002.jpg">
+        <span>منظم شحن 2</span>
+        <div class="details">
+          منظم متعدد الإعدادات، مناسب لمختلف أنواع البطاريات والأنظمة.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> الغدير لأنظمة الطاقة الشمسية
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const popup = document.getElementById("popup");
+  const popupImg = document.getElementById("popup-img");
+
+  document.querySelectorAll(".img-box img").forEach(img => {
+    img.addEventListener("click", () => {
+      popup.style.display = "flex";
+      popupImg.src = img.src;
+    });
+  });
+
+  document.getElementById("popup-close").onclick = () => popup.style.display = "none";
+  popup.onclick = (e) => { if (e.target === popup) popup.style.display = "none"; }
+</script>
+
+</body>
+</html>
